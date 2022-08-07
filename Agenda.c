@@ -6,46 +6,50 @@
 
 int main(){
     
-    int code, vr=0; //vr = validador; 
+    int code, decision, vr=0; //vr = validador; 
     float phone_number;
-    char name[20], answer; 
-
+    char name[20], respuesta; 
     FILE *A;
+
     A = fopen("contactos.txt", "r+"); // el simbolo + es para que pododamos agregar cosas al archivo txt
     if(A == NULL){
         printf("\n ERROR PARA ABRIR ARCHIVO \n");
         exit(0);
-    }else{
-        printf("\n      ARCHIVO ABIERTO CORRECTAMENTE!! \n");
     }
-   
-
     //feof = terminar de leer archivo
-    while(!feof(A)){
-        fscanf(A, "%i", &code); //fscanf = lee dentro del archivo, utiliza el puntero y el tipo de dato que queremos leer y donde se debe guardar
+   while(!feof(A)){
+        fscanf(A, "%d", &code); 
         fscanf(A, "%s", &name);
         fscanf(A, "%f", &phone_number);
-        printf("\n%i     %s    %.0f\n", code, name, phone_number);
+        printf("%d     %s    %.0f\n", code, name, phone_number);
     }
-
-    printf("Desea agregar mas contactos a su agenda?\n");
+    
+    
+    printf("\n\nSi desea agregar un contacto presione 1 \n");
+    printf("Si desea eliminar un contacto presione 2 \n");
+    printf("Si desea editar un contacto presione 3 \n");
+    printf(">");
+    scanf("%d", &decision);
+    
+    if(decision==1){
+    printf("Seguro que desea agregar mas contactos a su agenda?\n");
         printf("(S)i o (N)o?\n");
         printf(">");
-        scanf("%s", &answer);
+        scanf("%s", &respuesta);
 
-    while(answer=='s' || answer=='S'){
+    while(respuesta=='s' || respuesta=='S'){
         printf("Codigo:");
-        scanf("%i", &code); 
+        scanf("%d", &code); 
         printf("Nombre:");
         scanf("%s", &name);
         printf("Numero de telefono:");
         scanf("%f", &phone_number);
-        fprintf(A,"\n%i     %s    %.0f", code, name, phone_number);
+        fprintf(A,"\n%d     %s    %.0f", code, name, phone_number);
         printf("\nDatos guardados con exito!!\n");
         printf("Desea agregar otro contacto a su agenda?\n");
         printf("(S)i o (N)o?\n");
         printf(">");
-        scanf("%s", &answer);
+        scanf("%s", &respuesta);
         vr = 1;
     }
 
@@ -54,13 +58,15 @@ int main(){
     rewind(A); //volver a leer el archivo
     printf("Agenda actualizada correctamente!!\n");
     while(!feof(A)){
-        fscanf(A, "%i", &code); 
+        fscanf(A, "%d", &code); 
         fscanf(A, "%s", &name);
         fscanf(A, "%f", &phone_number);
-        printf("%i     %s    %.0f\n", code, name, phone_number);
+        printf("%d     %s    %.0f\n", code, name, phone_number);
+    }
     }
 
-
+    }else if(decision==2){
+            printf("hola\n");
     }
 
     fclose(A);
