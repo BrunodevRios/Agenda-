@@ -32,7 +32,7 @@ int main(){
     scanf("%d", &decision);
     
     if(decision==1){
-    printf("Seguro que desea agregar mas contactos a su agenda?\n");
+    printf("¿Seguro que desea agregar mas contactos a su agenda?\n");
         printf("(S)i o (N)o?\n");
         printf(">");
         scanf("%s", &respuesta);
@@ -46,7 +46,7 @@ int main(){
         scanf("%f", &phone_number);
         fprintf(A,"\n%d     %s    %.0f", code, name, phone_number);
         printf("\nDatos guardados con exito!!\n");
-        printf("Desea agregar otro contacto a su agenda?\n");
+        printf("¿Desea agregar otro contacto a su agenda?\n");
         printf("(S)i o (N)o?\n");
         printf(">");
         scanf("%s", &respuesta);
@@ -66,7 +66,14 @@ int main(){
     }
 
     }else if(decision==2){
-            printf("hola\n");
+        printf("¿Seguro que desea eliminar un contacto? \n");
+        printf("(S)i o (N)o?\n");
+        printf(">");
+        scanf("%s", &respuesta);
+        while(respuesta=='s' || respuesta=='S'){
+
+        }
+
     }
 
     fclose(A);
