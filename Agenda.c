@@ -3,11 +3,13 @@
 #include <conio.h>
 #include <ctype.h>
 
+// Variables globales
 int code, decision, vr=0; //vr = validador; 
 float phone_number;
 char name[20], respuesta; 
 FILE * C;
 
+// Abre el archivo contactos.txt, muestra los contactos
 void bienvenida(FILE * A){
  A = fopen("contactos.txt", "r+"); // el simbolo + es para que pododamos agregar cosas al archivo txt
     if(A == NULL){
@@ -23,7 +25,8 @@ void bienvenida(FILE * A){
     }
 }
 
-int mContactos(int decision){
+// Agregar Contactos
+int aContactos(int decision){
 
     if(decision==1){
         printf("%cSeguro que desea agregar mas contactos a su agenda?\n", 168);
@@ -62,6 +65,7 @@ int mContactos(int decision){
     }
 }
 
+// Eliminar Contactos
 int eContactos(int decision){
         if(decision==2){
             printf("%cSeguro que desea eliminar un contacto? \n", 168);
@@ -77,12 +81,14 @@ int eContactos(int decision){
 
 int main(){
     
+    // Abre el archivo contactos.txt dentro del main, para poder guardar, eliminar o editar los nuevos contactos
     C = fopen("contactos.txt", "r+"); // el simbolo + es para que pododamos agregar cosas al archivo txt
     if(C == NULL){
         printf("\n ERROR PARA ABRIR ARCHIVO \n");
         exit(0);
     }
-    //feof = terminar de leer archivo
+   
+   //feof = terminar de leer archivo
    while(!feof(C)){
         fscanf(C, "%d", &code); 
         fscanf(C, "%s", &name);
@@ -97,7 +103,7 @@ int main(){
     printf(">");
     scanf("%d", &decision);
     
-    mContactos(decision);
+    aContactos(decision);
     eContactos(decision);
     
 
